@@ -5,16 +5,29 @@ import  Cockpit  from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
- state = {
-   persons:[
-     {id:"1", name:"Vinod Kumar"},
-     {id:"2", name:"Vjay Kumar"},
-     {id:"3", name:"Tiger"},
-     {id:"4", name:"Lion"}
-   ],
-   otherState:'Something else',
-   showPersons:false
- }
+constructor(props){
+  super(props);
+  console.log('app.js inside constructor', props);
+  this.state = {
+    persons:[
+      {id:"1", name:"Vinod Kumar"},
+      {id:"2", name:"Vjay Kumar"},
+      {id:"3", name:"Tiger"},
+      {id:"4", name:"Lion"}
+    ],
+    otherState:'Something else',
+    showPersons:false
+  }
+}
+
+componentWillMount(){
+  console.log('app.js componentWillMount');
+}
+
+componentDidMount(){
+  console.log('app.js, component did mount');
+}
+
 
 nameChangedHandler = (event, id) => {
  const personIndex = this.state.persons.findIndex(p => {
@@ -44,7 +57,10 @@ deletePersonHandler = (personIndex) => {
    this.setState({persons:persons});
 }
 
+
+
   render() {
+    console.log('app.js, render()');
     let persons = null;
     if(this.state.showPersons){
       persons = <Persons
